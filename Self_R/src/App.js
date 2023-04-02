@@ -1,5 +1,6 @@
 import React from "react";
-import {Routes, Route, Link} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+
 
 import Home from "./component/Home";
 import About from "./component/About";
@@ -16,14 +17,16 @@ function App() {
     <div className="App">
       <nav>
       </nav>
+      <Router>
       <Routes>
-        <Route path="/question1" element={<Question1 />}/>
-        <Route path="/question2" element={<Question2 />}/>
-        <Route path="/question3" element={<Question3 />}/>
-        <Route path="/question4" element={<Question4 />}/>
+        <Route path="/question1" element={<Question1 />} />
+        <Route path="/question2" element={<Question2 />} />
+        <Route path="/question3" element={<Question3 />} />
+        <Route path="/question4" element={<Question4 />} />
       </Routes>
+      </Router>
     </div>
   );
-} 
+}
 
 export default App;
