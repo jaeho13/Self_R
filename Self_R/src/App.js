@@ -11,7 +11,6 @@ import Question2 from "./component/question/Question2";
 import Question3 from "./component/question/Question3";
 import Question4 from "./component/question/Question4";
 
-
 function App() {
   return (
     <div className="App">
@@ -25,6 +24,7 @@ function App() {
         <Route path="/question4" element={<Question4 />} />
       </Routes>
       </Router>
+      <Home />
     </div>
   );
 }

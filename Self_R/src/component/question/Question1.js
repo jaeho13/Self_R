@@ -2,7 +2,9 @@ import React from "react";
 import Styled from "styled-components";
 
 function Question1() {
-    return <StyledQ1>Q1</StyledQ1>
+    return (
+        <StyledQ1>Q1</StyledQ1>
+    );
 };
 
 export default Question1;
