@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import React, { Component } from 'react';
 import BoardService from '../service/BoardService';
 
 class ListBoardComponent extends Component {
