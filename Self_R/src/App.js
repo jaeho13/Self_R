@@ -33,23 +33,27 @@
 
 import './App.css';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'; 
-import ListBoardComponent from './component/ListBoardComponent';
-import HeaderComponent from './component/HeaderComponent';
-import FooterComponent from './component/FooterComponent';
+import ListBoardComponent from './component/Board/ListBoardComponent';
+import HeaderComponent from './component/Board/HeaderComponent';
+import FooterComponent from './component/Board/FooterComponent';
+import CreateBoardComponent from './component/Board/CreateBoardComponent';
+import ReadBoardComponent from './component/Board/ReadBoardComponent';
 
 function App() {
   return (
     <div>
+      <Router>
         <HeaderComponent/>
           <div className="container">
-          <Router>
             <Routes>
-              <Route path = "/" exact element={<ListBoardComponent />}/>
-              <Route path = "/board" element={<ListBoardComponent />} />
+              <Route path ="/" exact element={<ListBoardComponent />}/>
+              <Route path ="/board" element={<ListBoardComponent />} />
+              <Route path ="/create-board" element={<CreateBoardComponent />} />
+              <Route path ="/read-board/:no" element={<ReadBoardComponent />} />
             </Routes>
-          </Router>
           </div>
         <FooterComponent/>
+    </Router>
     </div>
   );
 }
