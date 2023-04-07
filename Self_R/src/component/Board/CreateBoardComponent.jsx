@@ -6,12 +6,12 @@ class CreateBoardComponent extends Component {
         super(props);
 
         this.state = {
+            // no: this.props.match.params.no,
             type: '',
             title: '',
             contents: '',
             memberNo: ''
         }
-
 
         this.changeTypeHandler = this.changeTypeHandler.bind(this);
         this.changeTitleHandler = this.changeTitleHandler.bind(this);
@@ -47,15 +47,46 @@ class CreateBoardComponent extends Component {
             memberNo: this.state.memberNo
         };
         console.log("board => " + JSON.stringify(board));
-        BoardService.createBoard(board).then(res => {
-            this.props.history.push('/board');
-        });
+        if (this.state.no === '_create') {
+            BoardService.createBoard(board).then(res => {
+                this.props.history.push('/board');
+            });
+        } else {
+            BoardService.updateBoard(this.state.no, board).then(res => {
+                this.props.history.push('/board');
+            });
+        }
     }
 
     cancel() {
         this.props.history.push('/board');
     }
 
+    getTitle() {
+        if (this.state.no === '_create') {
+            return <h3 className="text-center">새글을 작성해주세요</h3>
+        } else {
+            return <h3 className="text-center">{this.state.no}글을 수정 합니다.</h3>
+        }
+    }
+
+    componentDidMount() {
+        if (this.state.no === '_create') {
+            return
+        } else {
+            BoardService.getOneBoard(this.state.no).then((res) => {
+                let board = res.data;
+                console.log("board => " + JSON.stringify(board));
+
+                this.setState({
+                    type: board.type,
+                    title: board.title,
+                    contents: board.contents,
+                    memberNo: board.memberNo
+                });
+            });
+        }
+    }
 
     render() {
         return (
@@ -63,7 +94,9 @@ class CreateBoardComponent extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="card col-md-6 offset-md-3 offset-md-3">
-                            <h3 className="text-center">새글을 작성해주세요</h3>
+                            {
+                                this.getTitle()
+                            }
                             <div className="card-body">
                                 <form>
                                     <div className="form-group">
@@ -74,32 +107,34 @@ class CreateBoardComponent extends Component {
                                             <option value="2">질문과 답변</option>
                                         </select>
                                     </div>
+
                                     <div className="form-group">
                                         <label> Title </label>
                                         <input type="text" placeholder="title" name="title" className="form-control"
                                             value={this.state.title} onChange={this.changeTitleHandler} />
                                     </div>
+
                                     <div className="form-group">
                                         <label> Contents  </label>
                                         <textarea placeholder="contents" name="contents" className="form-control"
                                             value={this.state.contents} onChange={this.changeContentsHandler} />
                                     </div>
+
                                     <div className="form-group">
                                         <label> MemberNo  </label>
                                         <input placeholder="memberNo" name="memberNo" className="form-control"
                                             value={this.state.memberNo} onChange={this.changeMemberNoHandler} />
                                     </div>
+
                                     <button className="btn btn-success" onClick={this.createBoard}>Save</button>
-                                    <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{ marginLeft: "10px" }}>Cancel</button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         );
-    }
+    };
 }
 
 export default CreateBoardComponent;

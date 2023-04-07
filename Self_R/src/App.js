@@ -48,7 +48,7 @@ function App() {
             <Routes>
               <Route path ="/" exact element={<ListBoardComponent />}/>
               <Route path ="/board" element={<ListBoardComponent />} />
-              <Route path ="/create-board" element={<CreateBoardComponent />} />
+              <Route path="/create-board/:no" element={<CreateBoardComponent />} />
               <Route path ="/read-board/:no" element={<ReadBoardComponent />} />
             </Routes>
           </div>
