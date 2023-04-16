@@ -8,7 +8,7 @@ import Question1 from "./component/question/Question1";
 import Question2 from "./component/question/Question2";
 import Question3 from "./component/question/Question3";
 import Question4 from "./component/question/Question4";
-import Main from "./page/Main";
+import Main from "./component/Main";
 
 
 function App() {
@@ -23,8 +23,8 @@ function App() {
           <Route path="/Home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/second" element={<Second />} />
+          <Route path="/" element={<Main />} />
         </Routes>
-        <Main />
       </Router>
     </div>
   );
