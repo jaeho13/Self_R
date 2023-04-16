@@ -1,12 +1,13 @@
 import React from "react";
 import Styled from "styled-components";
+import { Link } from "react-router-dom";
 
 function Home() {
     return (
-      <form>
+      <div>
         <StyledHome>JBTI</StyledHome>
-        <StyledButton type="submit">시작하기</StyledButton>
-      </form>
+        <button><Link to="/second">이동하기</Link></button>
+      </div>
     );
 }
 
@@ -17,13 +18,3 @@ const StyledHome = Styled.header`
   text-align: center;
   padding: 5px 0px 0px 0px;  
 `;
-
-const StyledButton = Styled.button`
-  font-size: 30px;
-  text-align: center;
-  padding-top: 500px;
-`;
-
-//시작하기 버튼이 왜 찹살떡마냥 늘어나는지 궁금하다.
-//패딩이란 위에와 그만큼 거리를 두는 것 아닌가??
-//text-align: center; 하면 가운데 정렬이 아닌가??
